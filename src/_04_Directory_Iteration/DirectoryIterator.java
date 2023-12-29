@@ -23,9 +23,10 @@ public class DirectoryIterator {
 			for (File f : files) {
 				System.out.println(f.getAbsolutePath());
 				File file2 = f;
-				File[] files2 = file.listFiles();
+				File[] files2 = file2.listFiles();
 				for (File f2: files2) {
-					if (f2.getName().contains(".java")) {
+					System.out.println(f2.getAbsolutePath());
+					if (f2.getAbsolutePath().contains(".java")) {
 						try {
 							FileWriter fw = new FileWriter(f2.getAbsolutePath(), true);
 							
@@ -55,3 +56,4 @@ public class DirectoryIterator {
 		 */
 	}
 }
+//Copyright © 2023 Alexander Sementchenko
