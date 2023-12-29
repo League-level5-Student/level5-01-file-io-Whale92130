@@ -1,5 +1,9 @@
 package _02_File_Encrypt_Decrypt;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
 public class FileEncryptor {
 	/*
 	 * Encryption is the process of encoding a message or information
@@ -20,4 +24,40 @@ public class FileEncryptor {
 	 * Create a program that takes a message and a key from the user.
 	 * Use the key to shift each letter in the users input and save the final result to a file.
 	 */
+	public static void main(String[] args) {
+		try {
+			FileWriter fw = new FileWriter("src/_02_File_Encrypt_Decrypt/message.txt");
+			Scanner scan = new Scanner(System.in);
+			System.out.println("Give message");
+			String message = scan.nextLine();
+			System.out.println("Give key");
+			int key = scan.nextInt();
+			String weturn = "";
+			char[] alpha = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+			for (int i = 0; i < message.length(); i++) {
+				if (message.charAt(i) == ' ') {
+					weturn+=" ";
+				}
+				for (int o = 0; o < alpha.length; o++) {
+					if (message.toLowerCase().charAt(i) == alpha[o]) {
+						if (o+key >= 26) {
+							weturn+=alpha[o+key-26];
+						}
+						else {
+						weturn+=alpha[o+key];
+						}
+					}
+				}
+			}
+			System.out.println("weturn: " + weturn);
+			fw.write(weturn);
+			fw.close();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+		
+	
 }
